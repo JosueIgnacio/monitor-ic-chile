@@ -325,6 +325,7 @@ def build(snapshots: Path, out: Path) -> None:
         """
     )
     _normalize_types(con)
+    _pad_empty_tables(con)
     con.close()
     tmp.replace(out)
     print(f"Base construida en {out} (última foto {latest}, {len(files['evses'])} fotos)")
@@ -341,6 +342,18 @@ def _normalize_types(con: duckdb.DuckDBPyConnection) -> None:
     for table, column, dtype in cols:
         target = "BIGINT" if dtype == "HUGEINT" else "DOUBLE"
         con.execute(f'alter table {table} alter column "{column}" type {target}')
+
+
+def _pad_empty_tables(con: duckdb.DuckDBPyConnection) -> None:
+    """Evidence falla si una consulta de fuente devuelve 0 filas (no escribe el Parquet).
+
+    A una tabla vacía (p. ej. altas_bajas_detalle el primer día) le agregamos una fila
+    de NULL. Las páginas deben filtrar esas filas (`where fecha is not null`).
+    """
+    tables = [r[0] for r in con.execute("select table_name from information_schema.tables").fetchall()]
+    for t in tables:
+        if con.execute(f"select count(*) from {t}").fetchone()[0] == 0:
+            con.execute(f"insert into {t} default values")
 
 
 def main(argv: list[str] | None = None) -> int:

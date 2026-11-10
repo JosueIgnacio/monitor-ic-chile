@@ -37,7 +37,8 @@ dashboard/ (Evidence) ──► sitio estático ──► Cloudflare Pages
 3. **Todo cambio entra por PR a `main`**, con capturas (el workflow las comenta solo) y aprobación del dueño.
 4. **La lógica va en `etl/build_db.py`, no en las páginas.** Las páginas solo filtran y grafican. Si necesitas una métrica nueva, créala como tabla en `build_db.py` y agrega su `.sql` en `dashboard/sources/monitor/`.
 5. **Los filtros usan códigos, no nombres** (`codigo_region like '${inputs.region.value}'`), porque nombres como O'Higgins rompen el SQL.
-6. Evidence no maneja `HUGEINT` ni `DECIMAL`; `build_db.py` los convierte al final. Usa `sum(...)` sin miedo.
+6. Evidence falla si una tabla de fuente queda vacía; `build_db.py` le agrega una fila de NULL. En las páginas filtra con `where <columna> is not null` las tablas que pueden estar vacías (como `altas_bajas_detalle`).
+7. Evidence no maneja `HUGEINT` ni `DECIMAL`; `build_db.py` los convierte al final. Usa `sum(...)` sin miedo.
 
 ## Definiciones (deben coincidir con la página Metodología)
 

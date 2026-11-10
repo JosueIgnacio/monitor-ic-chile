@@ -149,7 +149,8 @@ order by orden_estado
 ```sql cambios
 select tipo, evse_id as punto, ubicacion, operador, region, comuna, max_power_kw as potencia_kw
 from monitor.altas_bajas_detalle
-where fecha = (select max(fecha) from monitor.altas_bajas_detalle)
+where fecha is not null
+  and fecha = (select max(fecha) from monitor.altas_bajas_detalle)
   and coalesce(codigo_region, '-') like '${inputs.region.value}'
   and coalesce(codigo_comuna, '-') like '${inputs.comuna.value}'
 order by tipo, region, comuna
