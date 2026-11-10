@@ -1,0 +1,32 @@
+diff --git a/node_modules/@evidence-dev/component-utilities/src/formatting.js b/node_modules/@evidence-dev/component-utilities/src/formatting.js
+index 0000000..1111111 100644
+--- a/node_modules/@evidence-dev/component-utilities/src/formatting.js
++++ b/node_modules/@evidence-dev/component-utilities/src/formatting.js
+@@ -209,6 +209,14 @@
+ 	if (result === undefined) {
+ 		result = fallbackFormat(value, columnUnitSummary);
+ 	}
++	return toChileanSeparators(value, result);
++}
++
++// Monitor IC Chile: formato numérico chileno (1.234,5) en vez del inglés (1,234.5).
++function toChileanSeparators(value, result) {
++	if ((typeof value === 'number' || typeof value === 'bigint') && typeof result === 'string') {
++		return result.replace(/[.,]/g, (c) => (c === ',' ? '.' : ','));
++	}
+ 	return result;
+ }
+ function getEffectiveFormattingCode(columnFormat, formattingContext = VALUE_FORMATTING_CONTEXT) {
+diff --git a/node_modules/@evidence-dev/component-utilities/src/autoFormatting.js b/node_modules/@evidence-dev/component-utilities/src/autoFormatting.js
+index 0000000..1111111 100644
+--- a/node_modules/@evidence-dev/component-utilities/src/autoFormatting.js
++++ b/node_modules/@evidence-dev/component-utilities/src/autoFormatting.js
+@@ -232,7 +232,7 @@
+  */
+ export const fallbackFormat = (typedValue) => {
+ 	if (typeof typedValue === 'number') {
+-		return typedValue.toLocaleString(undefined, {
++		return typedValue.toLocaleString('en-US', {
+ 			minimumFractionDigits: 0,
+ 			maximumFractionDigits: 2
+ 		});

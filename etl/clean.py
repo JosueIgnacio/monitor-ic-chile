@@ -110,6 +110,7 @@ def transform(raw: list[dict], snapshot_date: str) -> dict[str, list[dict]]:
                 "lat": _f(coords.get("latitude")),
                 "lon": _f(coords.get("longitude")),
                 "operator": _operator(loc),
+                "is_test": "prueba" in (_operator(loc) + " " + (_s(loc.get("name")) or "")).lower(),
                 "installation_type": _s(loc.get("charging_instalation_type")),
                 "parking_type": _s(loc.get("parking_type")),
                 "is_24_7": bool(opening.get("twentyfourseven")),

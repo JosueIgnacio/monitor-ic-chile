@@ -32,7 +32,7 @@ SCHEMAS: dict[str, pa.Schema] = {
         [
             ("snapshot_date", S), ("location_id", I), ("folio_irve", I), ("name", S),
             ("address", S), ("commune_raw", S), ("codigo_comuna", S), ("comuna", S),
-            ("codigo_region", S), ("region", S), ("lat", F), ("lon", F), ("operator", S),
+            ("codigo_region", S), ("region", S), ("lat", F), ("lon", F), ("operator", S), ("is_test", B),
             ("installation_type", S), ("parking_type", S), ("is_24_7", B),
             ("is_private_institution", B), ("data_confirmed", B), ("connection_date", S),
             ("revision_date", S), ("last_updated", S),
