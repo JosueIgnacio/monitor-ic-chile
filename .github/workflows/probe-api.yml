@@ -1,0 +1,28 @@
+name: Probe API
+
+on:
+  push:
+    branches: [claude/project-thread-3cb5l1]
+    paths: [.github/workflows/probe-api.yml, scripts/probe_api.py]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Descargar y describir la API
+        run: python scripts/probe_api.py data.json | tee probe.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api-probe
+          path: |
+            probe.txt
+            data.json
+          retention-days: 3
