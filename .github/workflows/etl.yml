@@ -1,0 +1,67 @@
+name: ETL diario
+
+# Toma la foto diaria de cargadorespublicos.cl a las 00:00 de Chile y la guarda
+# en la rama `data`. GitHub programa en UTC y Chile cambia de hora, así que
+# corremos a las 03:00 UTC (horario de verano, UTC-3) y a las 04:00 UTC
+# (horario de invierno, UTC-4). El script decide cuál de las dos corresponde.
+on:
+  schedule:
+    - cron: "0 3 * * *"
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Reescribir la foto de hoy si ya existe"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: etl
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Preparar rama data
+        run: |
+          git config user.name "monitor-ic-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch --depth 1 origin data; then
+            git worktree add data FETCH_HEAD
+            git -C data checkout -B data
+          else
+            git worktree add --orphan -b data data
+          fi
+
+      - name: Tomar la foto
+        run: |
+          FLAGS=""
+          if [ "${{ github.event_name }}" = "schedule" ]; then FLAGS="--scheduled"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then FLAGS="$FLAGS --force"; fi
+          python -m etl.snapshot --out data/snapshots $FLAGS | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Guardar en la rama data
+        working-directory: data
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios que guardar."
+            exit 0
+          fi
+          DAY=$(TZ=America/Santiago date +%F)
+          git commit -qm "Foto diaria $DAY"
+          git push origin data

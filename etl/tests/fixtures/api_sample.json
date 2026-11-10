@@ -1,0 +1,278 @@
+[
+ {
+  "location_id": 1,
+  "folio_IRVE": 100,
+  "name": "Mall Uno",
+  "address": "Av. Siempre Viva 742",
+  "commune": "Vina del Mar",
+  "region": "Valparaíso",
+  "coordinates": {
+   "latitude": "-33.02",
+   "longitude": "-71.55"
+  },
+  "OPC": {
+   "RUT": "111111111",
+   "address": "Calle Falsa 123",
+   "commune": "Las Condes",
+   "email": "contacto@example.com",
+   "name": "Operador SpA",
+   "phone": "+56900000000",
+   "region": "Metropolitana",
+   "user_id": 1,
+   "website": null,
+   "normalized_name": "ENEL X"
+  },
+  "owner": {
+   "RUT": "111111111",
+   "address": "Calle Falsa 123",
+   "commune": "Las Condes",
+   "email": "contacto@example.com",
+   "name": "Operador SpA",
+   "phone": "+56900000000",
+   "region": "Metropolitana",
+   "user_id": 1,
+   "website": null
+  },
+  "PSEs": [
+   {
+    "RUT": "111111111",
+    "address": "Calle Falsa 123",
+    "commune": "Las Condes",
+    "email": "contacto@example.com",
+    "name": "Operador SpA",
+    "phone": "+56900000000",
+    "region": "Metropolitana",
+    "user_id": 1,
+    "website": null
+   }
+  ],
+  "support_phone_number": "+56911111111",
+  "client_number": "123",
+  "charging_instalation_type": "Servicio de recarga Pública (BNUP)",
+  "parking_type": "CENTRO COMERCIAL",
+  "opening_times": {
+   "twentyfourseven": true,
+   "regular_hours": []
+  },
+  "institucion_privada": false,
+  "datos_IRVE_confirmados": true,
+  "connection_date": "0001-01-01",
+  "revision_date": "2024-04-10T18:18:34",
+  "last_updated": "2026-11-09T21:08:46+00:00",
+  "evses": [
+   {
+    "evse_uid": 11,
+    "evse_id": "1-1",
+    "status": "DISPONIBLE",
+    "max_electric_power": 7.4,
+    "brand": "ABB",
+    "model": "X",
+    "uso_exclusivo": false,
+    "permite_carga_simultanea": true,
+    "payment_capabilities": [
+     "APP"
+    ],
+    "activation_capabilities": [
+     "QR",
+     "APP"
+    ],
+    "last_updated": "2026-11-09T00:00:00+00:00",
+    "connectors": [
+     {
+      "connector_id": 111,
+      "standard": "Tipo 2",
+      "power_type": "AC",
+      "format": "CABLE",
+      "max_electric_power": 7.4,
+      "max_voltage": 400,
+      "max_amperage": 32,
+      "status": "DISPONIBLE",
+      "electric_power": 0,
+      "amperage": 0,
+      "voltage": 0,
+      "integrated": true,
+      "order_number": 1,
+      "soc": 0,
+      "tariffs": [
+       {
+        "tariff_id": 1110,
+        "order_number": 1,
+        "pse_id": 4,
+        "min_price": null,
+        "max_price": null,
+        "last_updated": "2026-11-01T00:00:00+00:00",
+        "tariff_alt_url": "https://example.com/tarifas",
+        "elements": {
+         "price_components": [
+          {
+           "order_number": 1,
+           "price": 439,
+           "tariff_dimension": "ENERGIA"
+          }
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "evse_uid": 12,
+    "evse_id": "1-2",
+    "status": "FUERA DE LINEA",
+    "max_electric_power": 60,
+    "brand": "ABB",
+    "model": "Y",
+    "uso_exclusivo": false,
+    "permite_carga_simultanea": true,
+    "payment_capabilities": [
+     "APP",
+     "CREDITO"
+    ],
+    "activation_capabilities": [
+     "APP"
+    ],
+    "last_updated": "2026-11-09T00:00:00+00:00",
+    "connectors": [
+     {
+      "connector_id": 121,
+      "standard": "CCS 2",
+      "power_type": "DC",
+      "format": "CABLE",
+      "max_electric_power": 60,
+      "max_voltage": 400,
+      "max_amperage": 32,
+      "status": "FUERA DE LINEA",
+      "electric_power": 0,
+      "amperage": 0,
+      "voltage": 0,
+      "integrated": true,
+      "order_number": 1,
+      "soc": 0,
+      "tariffs": [
+       {
+        "tariff_id": 1210,
+        "order_number": 1,
+        "pse_id": 4,
+        "min_price": null,
+        "max_price": null,
+        "last_updated": "2026-11-01T00:00:00+00:00",
+        "tariff_alt_url": "https://example.com/tarifas",
+        "elements": {
+         "price_components": [
+          {
+           "order_number": 1,
+           "price": 450,
+           "tariff_dimension": "ENERGIA"
+          }
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "connector_id": 122,
+      "standard": "CHAdeMO",
+      "power_type": "DC",
+      "format": "CABLE",
+      "max_electric_power": 50,
+      "max_voltage": 400,
+      "max_amperage": 32,
+      "status": "FUERA DE LINEA",
+      "electric_power": 0,
+      "amperage": 0,
+      "voltage": 0,
+      "integrated": true,
+      "order_number": 1,
+      "soc": 0,
+      "tariffs": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "location_id": 2,
+  "folio_IRVE": 200,
+  "name": "Ruta Dos",
+  "address": "Ruta 5 km 10",
+  "commune": "Comuna Inventada",
+  "region": "Libertador Bernardo OHiggins",
+  "coordinates": {
+   "latitude": "-34.1",
+   "longitude": "-70.7"
+  },
+  "OPC": {
+   "RUT": null,
+   "address": null,
+   "commune": null,
+   "email": null,
+   "name": null,
+   "phone": null,
+   "region": null,
+   "user_id": null,
+   "website": null,
+   "normalized_name": "Sin Operador Informado"
+  },
+  "owner": {
+   "RUT": "111111111",
+   "address": "Calle Falsa 123",
+   "commune": "Las Condes",
+   "email": "contacto@example.com",
+   "name": "Operador SpA",
+   "phone": "+56900000000",
+   "region": "Metropolitana",
+   "user_id": 1,
+   "website": null
+  },
+  "PSEs": [],
+  "support_phone_number": null,
+  "charging_instalation_type": null,
+  "parking_type": null,
+  "opening_times": {
+   "twentyfourseven": false,
+   "regular_hours": []
+  },
+  "institucion_privada": true,
+  "datos_IRVE_confirmados": false,
+  "connection_date": "2025-03-01",
+  "revision_date": "2025-02-01T00:00:00",
+  "last_updated": "2026-11-09T00:00:00+00:00",
+  "evses": [
+   {
+    "evse_uid": 21,
+    "evse_id": "2-1",
+    "status": "OCUPADO",
+    "max_electric_power": 180,
+    "brand": null,
+    "model": null,
+    "uso_exclusivo": true,
+    "permite_carga_simultanea": false,
+    "payment_capabilities": [],
+    "activation_capabilities": [
+     "RFID"
+    ],
+    "last_updated": "2026-11-09T00:00:00+00:00",
+    "connectors": [
+     {
+      "connector_id": 211,
+      "standard": "Favor actualizar valor",
+      "power_type": "DC",
+      "format": "CABLE",
+      "max_electric_power": 180,
+      "max_voltage": 400,
+      "max_amperage": 32,
+      "status": "OCUPADO",
+      "electric_power": 0,
+      "amperage": 0,
+      "voltage": 0,
+      "integrated": true,
+      "order_number": 1,
+      "soc": 0,
+      "tariffs": []
+     }
+    ]
+   }
+  ]
+ }
+]

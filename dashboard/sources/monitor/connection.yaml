@@ -1,0 +1,4 @@
+name: monitor
+type: duckdb
+options:
+  filename: monitor.duckdb

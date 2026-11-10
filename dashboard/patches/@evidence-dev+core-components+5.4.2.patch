@@ -1,0 +1,48 @@
+diff --git a/node_modules/@evidence-dev/core-components/dist/organisms/layout/tableofcontents/ContentsList.svelte b/node_modules/@evidence-dev/core-components/dist/organisms/layout/tableofcontents/ContentsList.svelte
+index 0000000..1111111 100644
+--- a/node_modules/@evidence-dev/core-components/dist/organisms/layout/tableofcontents/ContentsList.svelte
++++ b/node_modules/@evidence-dev/core-components/dist/organisms/layout/tableofcontents/ContentsList.svelte
+@@ -32,7 +32,7 @@
+ 
+ {#if headers && headers.length > 1}
+ 	<span class="block text-xs sticky top-0 mb-2 bg-base-100 shadow-base-100 font-medium">
+-		On this page
++		En esta página
+ 	</span>
+ 	{#each headers as header}
+ 		<a href="#{header.id}" class={header.nodeName.toLowerCase()}>
+diff --git a/node_modules/@evidence-dev/core-components/dist/unsorted/viz/core/SearchBar.svelte b/node_modules/@evidence-dev/core-components/dist/unsorted/viz/core/SearchBar.svelte
+index 0000000..1111111 100644
+--- a/node_modules/@evidence-dev/core-components/dist/unsorted/viz/core/SearchBar.svelte
++++ b/node_modules/@evidence-dev/core-components/dist/unsorted/viz/core/SearchBar.svelte
+@@ -6,7 +6,7 @@
+ 	import { Icon } from '@steeze-ui/svelte-icon';
+ 	import { Search } from '@steeze-ui/tabler-icons';
+ 
+-	export let placeholder = 'Search';
++	export let placeholder = 'Buscar';
+ 	export let value;
+ 	export let searchFunction;
+ </script>
+diff --git a/node_modules/@evidence-dev/core-components/dist/unsorted/viz/table/_DataTable.svelte b/node_modules/@evidence-dev/core-components/dist/unsorted/viz/table/_DataTable.svelte
+index 0000000..1111111 100644
+--- a/node_modules/@evidence-dev/core-components/dist/unsorted/viz/table/_DataTable.svelte
++++ b/node_modules/@evidence-dev/core-components/dist/unsorted/viz/table/_DataTable.svelte
+@@ -688,7 +688,7 @@
+ 			</table>
+ 		</div>
+ 
+-		<div class="noresults" class:shownoresults={showNoResults}>No Results</div>
++		<div class="noresults" class:shownoresults={showNoResults}>Sin resultados</div>
+ 
+ 		{#if paginated && pageCount > 1}
+ 			<div class="pagination">
+@@ -716,7 +716,7 @@
+ 						</div>
+ 					</button>
+ 					<span class="page-count">
+-						Page
++						Página
+ 						<input
+ 							class="page-input"
+ 							class:hovering
