@@ -30,7 +30,7 @@ order by case estado_ubicacion when 'Todo operativo' then 1 when 'Parcial' then 
   value=velocidad
   pointName=ubicacion
   height=640
-  basemap="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+  basemap={'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'}
   attribution="Mapa base © Esri"
   colorPalette={['#0f4c5c', '#e76f51']}
   tooltipType=click
@@ -54,7 +54,7 @@ order by case estado_ubicacion when 'Todo operativo' then 1 when 'Parcial' then 
   value=estado
   pointName=ubicacion
   height=640
-  basemap="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+  basemap={'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'}
   attribution="Mapa base © Esri"
   colorPalette={['#2a9d8f', '#e9a23b', '#d1495b', '#9ca3af']}
   tooltipType=click
