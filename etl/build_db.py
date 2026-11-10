@@ -147,7 +147,7 @@ def build(snapshots: Path, out: Path) -> None:
                  when h.max_power_kw <= 22 then '11 – 22 kW'
                  when h.max_power_kw < 50 then '23 – 49 kW'
                  when h.max_power_kw <= 150 then '50 – 150 kW'
-                 else 'Más de 150 kW'
+                 else '150+ kW'
                end as tramo_potencia
         from evse_hist_full h
         join evses_hist e on e.evse_uid = h.evse_uid and e.snapshot_date::date = h.fecha
@@ -166,7 +166,7 @@ def build(snapshots: Path, out: Path) -> None:
                  when c.max_power_kw <= 22 then '11 – 22 kW'
                  when c.max_power_kw < 50 then '23 – 49 kW'
                  when c.max_power_kw <= 150 then '50 – 150 kW'
-                 else 'Más de 150 kW'
+                 else '150+ kW'
                end as tramo_potencia,
                case
                  when c.max_power_kw is null then 9
@@ -311,7 +311,7 @@ def build(snapshots: Path, out: Path) -> None:
           from locations_hist where snapshot_date = '{latest}'
         )
         select e.evse_uid, e.location_id, e.speed, e.region, e.codigo_region, e.comuna, e.codigo_comuna,
-               e.operador, b.fecha_est, year(b.fecha_est) as anio
+               e.operador, b.fecha_est, year(b.fecha_est)::varchar as anio, year(b.fecha_est) as anio_num
         from evses e join base b using (location_id)
         """
     )

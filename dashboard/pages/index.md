@@ -71,20 +71,19 @@ from ${conectores_f}
 
 ### Conectores por estándar
 
-<Grid cols=6>
+<Grid cols=5>
 <BigValue data={kpi_con} value=tipo2 title="AC · Tipo 2" fmt="#,##0"/>
 <BigValue data={kpi_con} value=tipo1 title="AC · Tipo 1" fmt="#,##0"/>
 <BigValue data={kpi_con} value=ccs2 title="DC · CCS 2" fmt="#,##0"/>
 <BigValue data={kpi_con} value=chademo title="DC · CHAdeMO" fmt="#,##0"/>
 <BigValue data={kpi_con} value=gbt title="DC · GB/T" fmt="#,##0"/>
-<BigValue data={kpi_con} value=ccs1 title="DC · CCS 1" fmt="#,##0"/>
 </Grid>
 
 ```sql por_tipo
 select corriente, estandar, count(*) as conectores
 from ${conectores_f}
 group by all
-order by corriente, conectores desc
+order by conectores desc
 ```
 
 ```sql por_potencia
@@ -99,17 +98,18 @@ order by orden_tramo
 <BarChart
   data={por_tipo}
   title="Conectores por tipo"
-  x=corriente
+  x=estandar
   y=conectores
-  series=estandar
+  series=corriente
   swapXY=true
   type=stacked
   yFmt="#,##0"
-  labels=false
-  legend=true
+  labels=true
+  seriesColors={{"AC": "#0f4c5c", "DC": "#e76f51"}}
 />
 <BarChart
   data={por_potencia}
+  fillColor="#2a9d8f"
   title="Conectores por potencia de carga"
   x=tramo_potencia
   y=conectores

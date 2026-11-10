@@ -38,14 +38,14 @@ group by 1 order by 1
   lineColor="#2a9d8f"
 />
 
-<AreaChart
+<BarChart
   data={serie}
   x=fecha
   y=puntos
   series=estado
   type=stacked
   yFmt="#,##0"
-  xFmt="dd-mm-yyyy"
+  xFmt="dd-mm"
   title="Puntos de carga por estado"
   seriesColors={{"Disponible": "#2a9d8f", "Ocupado": "#457b9d", "No disponible": "#e9a23b", "Fuera de línea": "#d1495b", "Desconocido": "#9ca3af"}}
 />
@@ -89,14 +89,12 @@ order by racha_fuera_dias desc, dias_fuera desc
 ```
 
 <DataTable data={rachas} search=true rows=15>
-  <Column id=punto title="Punto"/>
   <Column id=ubicacion title="Ubicación"/>
+  <Column id=punto title="Punto"/>
   <Column id=operador title="Operador"/>
   <Column id=comuna title="Comuna"/>
+  <Column id=racha_fuera_dias title="Días seguidos" fmt="#,##0" contentType=colorscale colorScale=negative/>
   <Column id=estado title="Estado hoy"/>
-  <Column id=racha_fuera_dias title="Días seguidos fuera" fmt="#,##0" contentType=colorscale colorScale=negative/>
-  <Column id=dias_fuera title="Días fuera (total)" fmt="#,##0"/>
-  <Column id=disponibilidad title="Disponibilidad histórica" fmt="0%"/>
 </DataTable>
 
 <p class="text-sm text-base-content-muted">Un punto está "operativo" si a las 00:00 aparece disponible u ocupado. Los días se cuentan desde la primera foto diaria (10-11-2026), así que las rachas crecen a medida que se acumula historia.</p>

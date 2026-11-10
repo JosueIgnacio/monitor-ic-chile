@@ -70,11 +70,10 @@ order by orden_region
 <DataTable data={reg} rows=all>
   <Column id=region title="Región"/>
   <Column id=evses title="Puntos" fmt="#,##0"/>
-  <Column id=evses_operativos title="Operativos" fmt="#,##0"/>
   <Column id=evses_100k title="Por 100 mil hab." fmt="#,##0.0" contentType=colorscale colorScale=positive/>
   <Column id=comunas_con title="Comunas con carga" fmt="#,##0"/>
-  <Column id=comunas title="Comunas" fmt="#,##0"/>
-  <Column id=share_comunas title="% comunas cubiertas" fmt="0%" contentType=bar/>
+  <Column id=comunas title="Total comunas" fmt="#,##0"/>
+  <Column id=share_comunas title="% cubiertas" fmt="0%" contentType=bar/>
   <Column id=poblacion title="Población" fmt="#,##0"/>
 </DataTable>
 

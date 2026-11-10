@@ -8,28 +8,31 @@ sidebar_position: 2
 
 ```sql ubic
 select location_id, ubicacion, direccion, comuna, region, operador, lat, lon, evses, evses_operativos,
-       potencia_max_kw, carga, estado_ubicacion, tipo_instalacion
+       potencia_max_kw, carga as velocidad, estado_ubicacion as estado, tipo_instalacion
 from monitor.ubicaciones
 where lat is not null and lon is not null
   and codigo_region like '${inputs.region.value}'
   and coalesce(codigo_comuna, '-') like '${inputs.comuna.value}'
+order by case estado_ubicacion when 'Todo operativo' then 1 when 'Parcial' then 2 when 'Nada operativo' then 3 else 4 end
 ```
 
 <ButtonGroup name=color_por title="Colorear por">
-  <ButtonGroupItem valueLabel="Estado" value="estado_ubicacion" default/>
-  <ButtonGroupItem valueLabel="Velocidad" value="carga"/>
+  <ButtonGroupItem valueLabel="Estado" value="estado" default/>
+  <ButtonGroupItem valueLabel="Velocidad" value="velocidad"/>
 </ButtonGroup>
 
-{#if inputs.color_por === 'carga'}
+{#if inputs.color_por === 'velocidad'}
 
 <PointMap
   data={ubic}
   lat=lat
   long=lon
-  value=carga
+  value=velocidad
   pointName=ubicacion
-  height=620
-  colorPalette={['#2a9d8f', '#e76f51']}
+  height=640
+  basemap="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+  attribution="Mapa base © Esri"
+  colorPalette={['#0f4c5c', '#e76f51']}
   tooltipType=click
   tooltip={[
     {id: 'ubicacion', showColumnName: false, valueClass: 'text-lg font-semibold'},
@@ -48,9 +51,11 @@ where lat is not null and lon is not null
   data={ubic}
   lat=lat
   long=lon
-  value=estado_ubicacion
+  value=estado
   pointName=ubicacion
-  height=620
+  height=640
+  basemap="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+  attribution="Mapa base © Esri"
   colorPalette={['#2a9d8f', '#e9a23b', '#d1495b', '#9ca3af']}
   tooltipType=click
   tooltip={[

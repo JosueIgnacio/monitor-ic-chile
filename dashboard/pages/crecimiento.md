@@ -7,7 +7,7 @@ sidebar_position: 4
 {@partial "filtros.md"}
 
 ```sql hist
-select anio::varchar as anio, anio as anio_num, speed as velocidad, count(*) as nuevos
+select anio, anio_num, speed as velocidad, count(*) as nuevos
 from monitor.historia_estimada
 where anio is not null
   and codigo_region like '${inputs.region.value}'
@@ -29,7 +29,7 @@ with t as (
 a as (
   select anio_num, sum(nuevos) over (order by anio_num) as acumulado from t
 )
-select anio_num::varchar as anio, acumulado,
+select anio_num::integer::varchar as anio, acumulado,
        acumulado / lag(acumulado) over (order by anio_num) - 1 as crecimiento
 from a order by anio_num
 ```
@@ -60,6 +60,7 @@ from ${anual}
   labels=true
   seriesColors={{"Lento": "#0f4c5c", "Rápido": "#e76f51"}}
   xType=category
+  sort=false
 />
 
 <Alert status=warning>
@@ -77,15 +78,15 @@ group by all
 order by fecha
 ```
 
-<AreaChart
+<BarChart
   data={serie}
   x=fecha
   y=puntos
   series=velocidad
+  type=stacked
   yFmt="#,##0"
-  xFmt="dd-mm-yyyy"
+  xFmt="dd-mm"
   seriesColors={{"Lento": "#0f4c5c", "Rápido": "#e76f51"}}
-  emptySet=pass
 />
 
 <p class="text-sm text-base-content-muted">Esta serie se construye con la foto de cada medianoche desde el 10-11-2026 y se vuelve más útil con cada día que pasa.</p>

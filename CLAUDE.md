@@ -28,7 +28,8 @@ dashboard/ (Evidence) ──► sitio estático ──► Cloudflare Pages
 | `dashboard/pages/*.md` | Una página del sitio por archivo (Evidence, sintaxis clásica `<Componente/>`). |
 | `dashboard/partials/filtros.md` | Filtros de región y comuna que comparten las páginas. |
 | `dashboard/sources/monitor/*.sql` | Una tabla de `monitor.duckdb` expuesta a las páginas (`select * from tabla`). |
-| `dashboard/patches/` | Parche a Evidence para formato numérico chileno (1.234,5). Se aplica en `npm ci`. |
+| `dashboard/pages/+layout.svelte` | Marco del sitio: título, menú, enlace a GitHub. |
+| `dashboard/patches/` | Parches a Evidence: formato numérico chileno (1.234,5) y textos de la interfaz en español. Se aplican en `npm ci`. |
 
 ## Reglas que no se rompen
 
